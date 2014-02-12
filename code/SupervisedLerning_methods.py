@@ -74,11 +74,19 @@ if __name__=="__main__":
             t.append(1)
         else: t.append(2)
     target = np.array(t)
+ 
+    train_data,train_target,test_data,test_target = functions_knn.determine_train_test_sets(ndata, target,proportion=20)
+    pred_accuracy = []
+    print train_data.shape
+    print train_data
+    print train_target.shape
+    print train_target
+    print ndata.shape
+    print ndata
+    
     
     """invoke Knn method"""
     print'\napplying K-nearest-neighbor method'
-    pred_accuracy = []
-    train_data,train_target,test_data,test_target = functions_knn.determine_train_test_sets(ndata, target,proportion=20)
     for k in xrange(2,15,1): 
         predicted = functions_knn.fitting_knn(train_data, train_target, test_data, num_neighbors = k)
         print predicted
@@ -88,8 +96,8 @@ if __name__=="__main__":
         print k,':',accuracy
     PLOTS.simple_scatter_plot(np.array([k for k in xrange(2,15,1)]), np.array(pred_accuracy), "number of neighbors (k)",
                               "accuracy","Accuracy with kNN method for different k", "accurKNN")
-        
-    
+         
+     
     """invoke SVM"""
     print '\napplying SVM'
     pred_accuracy = []
@@ -98,7 +106,7 @@ if __name__=="__main__":
         print predicted
         print test_target
         accuracy = functions_knn.accuracy_eval(predicted,test_target)
-
+ 
         pred_accuracy.append(accuracy)
         print kernel,':',accuracy
     PLOTS.simple_scatter_plot(np.array([k for k in xrange(3)]), np.array(pred_accuracy), "kernels",

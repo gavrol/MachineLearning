@@ -2,6 +2,9 @@
 Created on 20/01/2014
 
 @author: olena
+
+This program explores the use of NLP toolkit in python as well as unsupervised learning
+techniques (namely, clustering) with scikit
 '''
 import os
 import sys
